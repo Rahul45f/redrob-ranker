@@ -1,0 +1,84 @@
+# Redrob Hackathon — Submission Metadata
+# INDIA.RUNS · Redrob × H2S · Intelligent Candidate Discovery
+
+# ============================================================================
+# Team identity
+# ============================================================================
+team_name: "Rahul Saharan"   # Solo participant — team name = your registered participant ID
+
+primary_contact:
+  name: "Rahul Saharan"
+  email: "rahul00376491@gmail.com"      # UPDATE with your actual email
+  phone: "+91-7300376491"              # UPDATE with your actual phone
+
+team_members:
+  - name: "Rahul Saharan"
+    email: "rahul00376491@gmail.com"   # UPDATE
+    role: "Solo Participant — ML / Data Science"
+
+# ============================================================================
+# Code and reproducibility
+# ============================================================================
+github_repo: "https://github.com/Rahul45f/redrob-ranker"
+
+sandbox_link: "https://rahul45f-redrob-ranker.streamlit.app"
+
+reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submission.csv"
+
+# ============================================================================
+# Compute environment
+# ============================================================================
+compute:
+  platform: "Personal Laptop"
+  cpu_cores: 8
+  ram_gb: 16
+  python_version: "3.11"
+  os: "Windows 11"
+  uses_gpu_for_inference: false          # CPU only — confirmed
+  has_network_during_ranking: false      # No API calls during ranking — confirmed
+  pre_computation_required: false        # No pre-computation required
+  pre_computation_time_minutes: 0
+
+# ============================================================================
+# AI tools declaration
+# ============================================================================
+ai_tools_used:
+  - "Claude"
+
+ai_usage_summary: |
+  Used Claude for initial architecture discussion and code structure review.
+  
+# ============================================================================
+# Approach summary
+# ============================================================================
+methodology_summary: |
+  Rule-based multi-signal ranker with five scoring components:
+  (1) Career fitness (40%): classifies each job in career history as ML/AI,
+  data-adjacent, or irrelevant; penalises entire-career-consulting firms
+  (TCS/Infosys/Wipro etc.) and rewards product-company ML experience.
+  This is the decisive signal against keyword stuffers — a profile listing
+  "FAISS" but with a career as Project Manager at Wipro gets a 65% penalty.
+  (2) Skills fitness (28%): trust-weighted skill matching using endorsements
+  and duration_months as a credibility multiplier; expert skills with 0 months
+  are down-weighted. Keyword stuffers are further penalised when career evidence
+  is absent.
+  (3) Behavioral availability (18%): composite of recency of last login,
+  open_to_work_flag, recruiter_response_rate, notice_period, interview
+  completion rate, and GitHub activity. A technically perfect candidate
+  who is inactive and unresponsive is ranked below an equally good but
+  available candidate.
+  (4) Experience range (8%): 5-9 years is the JD sweet-spot.
+  (5) Education + Location (4%): minor signal.
+  Honeypot detection: flags profiles with expert/advanced skills at 0 duration,
+  career timelines that exceed claimed experience, and impossible date sequences.
+  Runtime: ~27 seconds for 100K candidates on CPU (well within 5-minute limit).
+
+# ============================================================================
+# Declarations
+# ============================================================================
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true
