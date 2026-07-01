@@ -21,7 +21,7 @@ team_members:
 # ============================================================================
 github_repo: "https://github.com/Rahul45f/redrob-ranker"
 
-sandbox_link: "https://rahul45f-redrob-ranker.streamlit.app"
+sandbox_link: "https://redrob-ranker--rahul0037649.replit.app"
 
 reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submission.csv"
 
@@ -47,7 +47,7 @@ ai_tools_used:
 
 ai_usage_summary: |
   Used Claude for initial architecture discussion and code structure review.
-  
+
 # ============================================================================
 # Approach summary
 # ============================================================================
